@@ -171,7 +171,7 @@ def main(json_path='options/train_vif.json'):
         need_GT = True
     else:
         need_GT = False
-    for epoch in range(100000
+    for epoch in range(1000
                        ):  # keep running
         for i, train_data in enumerate(train_loader):
 
