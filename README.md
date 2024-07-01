@@ -2,11 +2,11 @@
 An end-to-end single-stage infrared and visible light enhancement fusion algorithm based on SwinTransformer
 
 ## Framework
-<img src="https://github.com/LingQi60/SEFusion/blob/main/model/Figs/SEFusion.png" width="835" height="378" /><br/>
+<img src="https://github.com/LingQi60/SEFusion/blob/main/model/Figs/SEFusion.png" width="989" height="378" /><br/>
 The overall framework of the propose SEFusion. It is a U-shaped codec architecture.
 
 ## Encoder 
-<img src="https://github.com/LingQi60/SEFusion/blob/main/model/Figs/Encoder.png" width="684" height="358" /><br/>
+<img src="https://github.com/LingQi60/SEFusion/blob/main/model/Figs/Encoder.png" width="659" height="299" /><br/>
 The framework of the decoder.The visible light features pass through the Feaex，TPM and ACM modules in turn.Finally,it is fused with the infrared feature in the CGFM.
 
 ## CGFM
