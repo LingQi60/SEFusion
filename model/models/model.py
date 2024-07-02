@@ -5,7 +5,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from models.CGFM import CGFM
-from models.Decoder import ESF_decoder
+from models.Decoder import SEF_decoder
 
 def rgb2ycbcr(img_rgb):
     R = torch.unsqueeze(img_rgb[:, 0, :, :], 1)
@@ -29,7 +29,6 @@ class GradientFeature(nn.Module):
         super(GradientFeature, self).__init__()
 
         self.smooth_kernel_x = torch.tensor([[0, 0], [-1, 1]], dtype=torch.float32).view(1, 1, 2, 2).cuda()
-        # self.smooth_kernel_x = torch.tensor([[0, 0], [-1, 1]], dtype=torch.float32).view(1, 1, 2, 2)
         self.smooth_kernel_y = self.smooth_kernel_x.transpose(2, 3)
 
     def forward(self, img):
@@ -54,10 +53,8 @@ class GradientFeature(nn.Module):
 class Laplacian(nn.Module):
     def __init__(self):
         super(Laplacian, self).__init__()
-
         self.kernel = torch.tensor([[0., 1., 0.], [1., -4., 1.], [0., 1., 0.]], dtype=torch.float32).view(1, 1, 3, 3).cuda()
-        # self.kernel = torch.tensor([[0., 1., 0.], [1., -4., 1.], [0., 1., 0.]], dtype=torch.float32).view(1, 1, 3, 3)
-
+        
     def forward(self, img):
         self.kernel.requires_grad = False
         self.kernel = self.kernel.expand(img.size(1), img.size(1), 3, 3)
@@ -112,7 +109,7 @@ class fusion_decoder(nn.Module):
         self.mlp_ratio = mlp_ratio
         self.upscale = upscale
         self.img_range = img_range
-        self.SFD = ESF_decoder(img_size=self.img_size, patch_size=1, in_chans=self.in_chan, embed_dim=self.embed_dim, 
+        self.SFD = SEF_decoder(img_size=self.img_size, patch_size=1, in_chans=self.in_chan, embed_dim=self.embed_dim, 
                                       Ex_depths=[4], Fusion_depths=[2, 2], Re_depths=[4], Ex_num_heads=[8], 
                                       Fusion_num_heads=[8, 8], Re_num_heads=[8], window_size=self.window_size, mlp_ratio=self.mlp_ratio, 
                                       qkv_bias=True, qk_scale=None, drop_rate=0., attn_drop_rate=0., 
