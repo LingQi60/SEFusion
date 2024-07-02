@@ -915,7 +915,7 @@ class UpsampleOneStep(nn.Sequential):
         return flops
 
 
-class ESF_decoder(nn.Module):
+class SEF_decoder(nn.Module):
     r""" SwinIR
         A PyTorch impl of : `SwinIR: Image Restoration Using Swin Transformer`, based on Swin Transformer.
 
@@ -951,7 +951,7 @@ class ESF_decoder(nn.Module):
                  norm_layer=nn.LayerNorm, ape=False, patch_norm=True,
                  use_checkpoint=False, upscale=2, img_range=1., upsampler='', resi_connection='1conv',
                  **kwargs):
-        super(ESF_decoder, self).__init__()
+        super(SEF_decoder, self).__init__()
         num_out_ch = in_chans
         num_feat = 64
         self.img_range = img_range
@@ -1165,7 +1165,7 @@ if __name__ == '__main__':
     window_size = 8
     height = 128
     width = 128
-    model = ESF_decoder(upscale=2, img_size=(height, width),
+    model = SEF_decoder(upscale=2, img_size=(height, width),
                    window_size=window_size, img_range=1., depths=[6, 6, 6, 6],
                    embed_dim=60, num_heads=[6, 6, 6, 6], mlp_ratio=2, upsampler='')
     # print(model)
