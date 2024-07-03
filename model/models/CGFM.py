@@ -1,8 +1,5 @@
 # Author: Ling Qi
 # Date: 2024/3/22 
-# Acknowledgement
-# The codes are heavily based on [SwinFusion](https://github.com/Linfeng-Tang/SwinFusion). Please also follow their licenses. Thanks for their amazing works.
-
 
 import math
 import torch
