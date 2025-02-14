@@ -6,7 +6,7 @@ An end-to-end single-stage infrared and visible light enhancement fusion algorit
 The overall framework of the propose SEFusion. It is a U-shaped codec architecture.
 
 ## Encoder 
-<img src="https://github.com/LingQi60/SEFusion/blob/main/model/Figs/Encoder.png" width="1300" height="250" /><br/>
+<img src="https://github.com/LingQi60/SEFusion/blob/main/model/Figs/Encoder.png" width="1150" height="240" /><br/>
 The framework of the decoder.The visible light features pass through the Feaex，TPM and ACM modules in turn.Finally,it is fused with the infrared feature in the CGFM.
 
 ## CGFM
